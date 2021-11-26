@@ -24,7 +24,7 @@ app.post("/", function(req,res) {
             res.write("<body style='background-image: url(images/background2.jpg); background-size: cover; background-attachment: fixed; background-repeat: no-repeat;'>")
             res.write("<h1 style='text-align:center;color:#fff;font-size:5rem;'>" + storyTitle + "</h1>");
             res.write("<h3 style='text-align:center;color:#fff;;font-size:1.5rem;font-style: italic;'>by " + storyAuthor + "</h3>");
-            res.write("<p style='text-align:center;color:#fff;;font-size:0.7rem;margin:0 1rem;'>" + storyText + "</p>");
+            res.write("<p style='text-align:center;color:#fff;;font-size:1rem;margin:0 1rem;'>" + storyText + "</p>");
             res.write("<script>let msg = new SpeechSynthesisUtterance();msg.text = '" + storyText + "';msg.rate = 0.6;window.speechSynthesis.speak(msg); </script>")
             res.send();        
         })
