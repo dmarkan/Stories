@@ -3,15 +3,20 @@ const bodyParser = require("body-parser");
 const app = express();
 const https = require("https");
 
+
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/index.html");
+
 })
 
 app.post("/", function(req,res) {
+   
     const url = "https://shortstories-api.herokuapp.com";
     https.get(url, function (response) {
+
         console.log(response.statusCode);
         response.on("data", function (data) {
             const storyData = JSON.parse(data);
@@ -21,7 +26,9 @@ app.post("/", function(req,res) {
             res.write("<h1>" + storyTitle + "</h1>");
             res.write("<h3>by " + storyAuthor + "</h3>");
             res.write("<p>" + storyText + "</p>");
+            res.write("<script>let msg = new SpeechSynthesisUtterance();msg.text = '" + storyText + "';msg.rate = 0.6;window.speechSynthesis.speak(msg); </script>")
             res.send();
+          
         })
     })
 })
